@@ -1,4 +1,4 @@
-drapper-twin
+draper-twin
 ============
 
 clone of drapper gem https://github.com/drapergem/draper
