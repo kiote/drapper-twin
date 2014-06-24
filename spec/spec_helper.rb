@@ -13,10 +13,13 @@ end
 class Model; include Drapper::Decoratable; end
 
 class Product < Model; end
+class SpecialProduct < Product; end
 class ProductDecorator < Draper::Decorator; end
 class ProductsDecorator < Draper::CollectionDecorator; end
 
 class ProductPresenter < Draper::Decorator; end
+
+class OtherDecorator < Draper::Decoreator; end
 
 module Namespaced
   class Product < Model; end
