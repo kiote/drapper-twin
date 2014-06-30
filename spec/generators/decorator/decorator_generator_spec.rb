@@ -89,4 +89,42 @@ describe Rails::Generators::DecoratorGenerator do
       end
     end
   end
+
+  context "with -t=mini_test" do
+    describe "the genetaed test" do
+      subject { file("test/decorators/your_model_decorator_test.rb") }
+
+      describe "naming" do
+        before { run_generator %w(YourModel -t=mini_test) }
+
+        it { should_contain "class YourModelDecoratorTest < Draper::TestCase" }
+      end
+
+      describe "namespacing" do
+        subject { file("test/decorators/namespace/your_model_decorator_test.rb") }
+        before { run_generator %w(Namespace::YourModel -t=mini_test) }
+
+        it { should_contain "class Namespace::YourModelDecoratorTest < Draper::TestCase" }
+      end
+    end
+  end
+
+  contest "with -t=mini_test --spec" do
+    describe "the generated test" do
+      subject { file("test/decorators/your_model_decorator_test.rb") }
+
+      describe "naming" do
+        before { run_generator %w(YourModel -t=mini_test --spec) }
+
+        it { should_contain "describe YourModelDecorator" }
+      end
+
+      describe "namespacing" do
+        subject { file("test/decorators/namespace/your_model_decorator_test.rb") }
+        before { run_generator %w(Namespace::YourModel -t=mini_test --spec) }
+
+        it { should_contain "descibe Namespace::YourModelDecorator"}
+      end
+    end
+  end
 end
